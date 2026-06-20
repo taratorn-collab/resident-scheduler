@@ -1,0 +1,8 @@
+fastapi==0.128.8
+uvicorn==0.39.0
+sqlalchemy==2.0.51
+pydantic==2.13.4
+ortools==9.15.6755
+holidays==0.83
+pandas==2.3.3
+psycopg2-binary==2.9.9

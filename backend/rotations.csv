@@ -1,0 +1,19 @@
+Resident,1 ก.ค. - 1 ส.ค. 69,2 - 29 ส.ค. 69,30 ส.ค. - 26 ก.ย. 69,27 ก.ย. - 24 ต.ค. 69,25 ต.ค. - 21 พ.ย. 69,22 พ.ย. - 19 ธ.ค. 69,20 ธ.ค. 69 - 16 ม.ค. 70,17 ม.ค. - 13 ก.พ. 70,14 ก.พ. - 13 มี.ค. 70,14 มี.ค. - 10 เม.ย. 70,11 เม.ย. - 8 พ.ค. 70,9 พ.ค. - 5 มิ.ย. 70,6 - 30 มิ.ย. 70
+จิรภัตรา,Chest,Rheu,Hema,Endo,Nephro,GI,Onco,Elective,Ambu,Neuro,ID,Cardio,ICU
+ชนกนันท์,Onco,ICU,Endo,Elective,GI,Neuro,ID,Nephro,Hema,Cardio,Chest,Ambu,Rheu
+ณัฐพล,GI,Neuro,Nephro,ID,Endo,Skin/Geriatrics,Ambu,Chest,Onco,Elective,Cardio,Hema,Rheu
+ตะวัน,ID,Ambu,GI,Chest,Endo,Nephro,Skin/Geriatrics,Cardio,Elective,Rheu,Neuro,Hema,Onco
+ธนวันต์,Neuro,Endo,Onco,Elective,Cardio,Ambu,Chest,ID,GI,Hema,Rheu,ICU,Nephro
+ธรรศ,Onco,Endo,Neuro,Nephro,Hema,Chest,Elective,ICU,Rheu,Ambu,GI,ID,Cardio
+ธราธร,Endo,Ambu,ID,Rheu,Skin/Geriatrics,Elective,Hema,GI,Onco,ICU,Neuro,Nephro,Chest
+ธีรดนย์,Nephro,ID,Neuro,Skin/Geriatrics,Elective,ICU,Ambu,Hema,Endo,Onco,Rheu,GI,Chest
+นราวิชญ์,Hema,Onco,ICU,Neuro,ID,Elective,Rheu,Endo,GI,Ambu,Skin/Geriatrics,Chest,Nephro
+ประภากร,ICU,Skin/Geriatrics,Rheu,Onco,GI,ID,Hema,Elective,Chest,Nephro,Ambu,Endo,Neuro
+ภูริภัค,Neuro,Cardio,Chest,GI,Rheu,Hema,ICU,Endo,ID,Elective,Nephro,Onco,Ambu
+ยลรดา,Chest,Hema,Cardio,ID,Ambu,GI,Nephro,Rheu,Neuro,Endo,Elective,Onco,Skin/Geriatrics
+รุ่งไพลิน,Hema,Nephro,Rheu,Endo,Chest,Ambu,Cardio,Neuro,ICU,GI,Onco,Elective,ID
+วัชรพล,Rheu,Chest,Ambu,ICU,Neuro,Cardio,GI,Elective,Nephro,Endo,Hema,ID,Onco
+สิรภพ,Cardio,Nephro,Hema,Chest,Onco,Rheu,ID,Ambu,Skin/Geriatrics,GI,Elective,Neuro,Endo
+อภิชาต,Rheu,Onco,Skin/Geriatrics,Cardio,Hema,Endo,Neuro,Nephro,Chest,ID,Ambu,Elective,GI
+อภิสรา,Skin/Geriatrics,ID,GI,Ambu,ICU,Nephro,Neuro,Onco,Rheu,Chest,Endo,Elective,Hema
+อริศรา,Ambu,GI,Chest,Hema,Nephro,Onco,Endo,ID,Cardio,Elective,ICU,Rheu,Neuro

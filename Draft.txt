@@ -1,0 +1,63 @@
+I want to create a automatic , Resident shift creation and allocation , ตารางจัดเวร resident 2 Internal medicine 
+
+Population = 18 resident 2 name listed below 
+จิรภัตรา
+ชนกนันท์ 
+ณัฐพล
+ตะวัน
+ธนวันต์
+ธรรศ
+ธราธร
+ธีรดนย์
+นราวิชญ์
+ประภากร
+ภูริภัค
+ยลรดา
+รุ่งไพลิน
+วัชรพล
+สิรภพ
+อภิชาต
+อภิสรา
+อริศรา
+
+
+And All of the rotate are 
+Chest
+Onco
+GI
+ID
+Neuro
+Endo
+Nephro
+Hema
+ICU
+Cardio
+Rheu
+Skin/Geriatrics
+Ambu
+Elective
+
+
+All of the Shift 
+MICU : The heaviest , most burden of all 
+CCU : middle difficulty 
+ต่างแผนก : middle difficulty 
+แยกโรค : easiest , lightest  usually start back half of the month [ will define a specific starting date manually each month etc 17 of may till the end of the month ] 
+
+
+My logic in to creating the shift table each month 
+list the month 
+look up thai holiday and confrim with me 
+address the start date of extra shift 
+blocked out the date that each doctor personal event [ if someone went on a vacation the will blocked out 2 weeks of date ] 
+blocked out the date if there have an OPD the next day 
+filled in the blank by prioritizing the date with minimal avaliable spot first then work backward 
+everyone must have at least 2 break day in between shift 
+check the previous month for the shift two make sure that at the begining of the month shift dosent overlap with last month shift 
+Try to avoid putting ID , Chest to be on called at sunday if possible , then followed by Neuro and Rheumato 
+try to balance every category to everyone no one should have more shift than other interms of weekday vs weekend , 4 type of shift 
+Counting the working hour by , week day account for 16 hr , weekend account for 24 hr 
+Everyone should generally got the same amount of hour each month except for Vacation , Elective , Ambu how might got a fewer hour than other but at least must meet 80 hr minimal requirement 
+The Rotating will change according to the specific date provide [ every 4 wk rougly] not following a monthly basis so make sure that the condition still viable for both old and new rotate in the same month 
+the balancing act accounted for the previous month to make everyone equal in the long run 
+keep track of everydata in google sheet 
