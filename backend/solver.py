@@ -216,6 +216,21 @@ def solve_schedule(req: GenerateRequest) -> GenerateResponse:
                         model.Add(v_sun >= sum(x[r_name, d_str, s] for s in active_s))
                         sunday_rot_violations.append(v_sun)
 
+    # Tier 2: Avoid MICU for ID/Chest on Sunday-Thursday (Soft Constraint)
+    micu_weekday_rot_violations = []
+    for r_name in resident_names:
+        r_input = res_map[r_name]
+        rot = r_input.rotation.upper()
+        if "ID" in rot or "CHEST" in rot:
+            for d_str in days_str:
+                d_val = datetime.date.fromisoformat(d_str)
+                if d_val.weekday() in (6, 0, 1, 2, 3): # Sunday - Thursday
+                    active_s = active_shifts_by_day[d_str]
+                    if "MICU" in active_s:
+                        v_micu_wk = model.NewBoolVar(f"v_micu_wk_{r_name}_{d_str}")
+                        model.Add(v_micu_wk >= x[r_name, d_str, "MICU"])
+                        micu_weekday_rot_violations.append(v_micu_wk)
+
     # Tier 3: Avoid Neuro, Rheumato on Sunday (Nice to Have)
     sunday_rot_nice_violations = []
     for r_name in resident_names:
@@ -344,6 +359,7 @@ def solve_schedule(req: GenerateRequest) -> GenerateResponse:
         100000 * sum(v_excess_hard_list) +  # Hard Limit penalty
         10000 * sum(v_excess_soft_list) +    # Soft Limit penalty
         5000 * sum(opd_violations) +
+        3000 * sum(micu_weekday_rot_violations) +
         2000 * sum(sunday_rot_violations) +
         500 * sum(sunday_rot_nice_violations) +
         sum(term * weight for term, weight in balance_terms)
@@ -557,6 +573,25 @@ def solve_schedule(req: GenerateRequest) -> GenerateResponse:
                                 date=d_str,
                                 details=f"{r_name} is on rotation '{r_input.rotation}' but was assigned a Sunday shift on {d_str}."
                             ))
+
+        # MICU on Weekday for ID/Chest violations
+        for r_name in resident_names:
+            r_input = res_map[r_name]
+            rot = r_input.rotation.upper()
+            if "ID" in rot or "CHEST" in rot:
+                for d_str in days_str:
+                    d_val = datetime.date.fromisoformat(d_str)
+                    if d_val.weekday() in (6, 0, 1, 2, 3): # Sunday - Thursday
+                        active_s = active_shifts_by_day[d_str]
+                        if "MICU" in active_s:
+                            if solver.Value(x[r_name, d_str, "MICU"]) == 1:
+                                violations_out.append(ConstraintViolation(
+                                    type="SOFT",
+                                    rule="MICU on Weekday for ID/Chest Violation",
+                                    resident_name=r_name,
+                                    date=d_str,
+                                    details=f"{r_name} is on '{r_input.rotation}' rotation but was assigned MICU on {d_val.strftime('%A')} ({d_str})."
+                                ))
 
         # Neuro/Rheu on Sunday violations (Nice to have)
         for r_name in resident_names:
@@ -781,7 +816,21 @@ def validate_schedule(req: ValidateRequest) -> ValidateResponse:
                         details=f"{r_name} is on rotation '{r_input.rotation}' but was assigned a Sunday shift on {a.date}."
                     ))
 
-        # 6. Check Neuro, Rheumato on Sunday (Nice to have)
+        # 6. Check MICU on Weekday for ID/Chest (Sunday - Thursday)
+        if "ID" in rot or "CHEST" in rot:
+            for a in r_assigns:
+                if a.shift_type == "MICU":
+                    a_dt = datetime.date.fromisoformat(a.date)
+                    if a_dt.weekday() in (6, 0, 1, 2, 3): # Sunday - Thursday
+                        violations.append(ConstraintViolation(
+                            type="SOFT",
+                            rule="MICU on Weekday for ID/Chest Violation",
+                            resident_name=r_name,
+                            date=a.date,
+                            details=f"{r_name} is on '{r_input.rotation}' rotation but was assigned MICU on {a_dt.strftime('%A')} ({a.date})."
+                        ))
+
+        # 7. Check Neuro, Rheumato on Sunday (Nice to have)
         if "NEURO" in rot or "RHEU" in rot:
             for a in r_assigns:
                 a_dt = datetime.date.fromisoformat(a.date)
